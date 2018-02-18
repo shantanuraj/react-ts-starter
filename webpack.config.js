@@ -124,26 +124,6 @@ module.exports = env => {
           swDest: resolve(distDir, 'sw.js'),
           clientsClaim: true,
           skipWaiting: true,
-          runtimeCaching: [
-            {
-              urlPattern: /.mp3(\?.*)?$/,
-              handler: 'cacheFirst',
-              options: {
-                cacheName: 'podcasts',
-                cacheExpiration: {
-                  maxEntries: 20,
-                },
-                cacheableResponse: { statuses: [0, 299] },
-              },
-            },
-            {
-              urlPattern: /^https:\/\/data.podcst.io\/.*/,
-              handler: 'staleWhileRevalidate',
-              options: {
-                cacheName: 'data-api',
-              },
-            },
-          ],
         }),
       ),
       ifProd(
