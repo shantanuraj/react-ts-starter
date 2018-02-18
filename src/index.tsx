@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { forceRenderStyles } from 'typestyle';
 
 // Patch Rx operators
-import './utils/patch_operators';
+import './utils/patch-operators';
 
 import { fixGlobalStyles } from './utils/styles';
 
