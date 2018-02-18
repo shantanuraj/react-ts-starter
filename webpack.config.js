@@ -14,15 +14,6 @@ const WebpackHashOutput = require('webpack-plugin-hash-output');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { version } = require('./package.json');
 
-const getPath = env => {
-  const key = Object.keys(env)[0];
-  if (key === 'dev') {
-    return '/';
-  } else {
-    return `https://static.podcst.io/${key}/`;
-  }
-};
-
 const srcDir = resolve(__dirname, 'src');
 const distDir = resolve(__dirname, 'dist');
 
@@ -39,7 +30,7 @@ module.exports = env => {
     path: distDir,
     filename: '[name].js',
     chunkFilename: '[name].js',
-    publicPath: getPath(env),
+    publicPath: '/',
   };
 
   if (isProdOrStaging) {
