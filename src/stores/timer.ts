@@ -55,8 +55,7 @@ const clock$ = (): Observable<IUpdateTimeAction> => interval(1000).map(() => upd
 export const updateTimeEpic: Epic<Actions, IState> = action$ =>
   action$
     .ofType(START_TIMER)
-    .switchMap(clock$)
-    .takeUntil(action$.ofType(STOP_TIMER));
+    .switchMap(() => clock$().takeUntil(action$.ofType(STOP_TIMER)));
 
 // Timer reducer
 export const timer = (state: ITimerState = {
