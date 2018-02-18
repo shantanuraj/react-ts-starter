@@ -9,7 +9,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const WebpackHashOutput = require('webpack-plugin-hash-output');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { version } = require('./package.json');
@@ -117,15 +116,6 @@ module.exports = env => {
         }),
       ),
       new HtmlWebpackPlugin({ template: '../public/index.html' }),
-      ifProd(
-        new WorkboxPlugin({
-          globDirectory: distDir,
-          globPatterns: ['**/*.{html,js,css,svg}'],
-          swDest: resolve(distDir, 'sw.js'),
-          clientsClaim: true,
-          skipWaiting: true,
-        }),
-      ),
       ifProd(
         new BundleAnalyzerPlugin({
           analyzerMode: 'static',
