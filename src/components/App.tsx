@@ -10,7 +10,7 @@ import { ITimerState } from '../stores/timer';
 
 import { normalizeEl } from '../utils/styles';
 
-import { renderIf } from '../utils/render-if-else';
+import RenderIf from '../utils/RenderIf';
 
 import Time from './Time';
 
@@ -26,20 +26,15 @@ interface IAppProps extends ITimerState {
   stopTimer();
 }
 
-const App = ({
-  isRunning,
-  startTimer,
-  stopTimer,
-  time,
-}: IAppProps) => (
+const App = ({ isRunning, startTimer, stopTimer, time }: IAppProps) => (
   <div className={classes(normalizeEl, mainContainer)}>
     <main className={mainContainer}>
       <Time time={time} />
-      {renderIf(
-        isRunning,
-        <button onClick={stopTimer}>Stop</button>,
-        <button onClick={startTimer}>Start</button>,
-      )}
+      <RenderIf
+        cond={isRunning}
+        ifComp={<button onClick={stopTimer}>Stop</button>}
+        elseComp={<button onClick={startTimer}>Start</button>}
+      />
     </main>
   </div>
 );
